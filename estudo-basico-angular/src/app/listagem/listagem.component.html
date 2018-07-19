@@ -1,0 +1,27 @@
+<header class="jumbotron">
+    <h1 class="text-center">Heey!</h1>
+</header>
+
+<section class="container">
+    <div class="row mb-4" style="margin-bottom: 10px">
+        <div class="col-md-12">
+            <form class=input-group>
+                <span class="input-group-prepend">
+                    <a routerLink="/cadastro" class="btn btn-primary">Nova foto</a>
+                </span>
+
+                <input #inputFiltro type="search" class="form-control" (keyup)="true">
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <painel *ngFor="let foto of listaFotos | filtroPorTitulo: inputFiltro.value" titulo={{foto.titulo}} class="col-sm-4">
+            <a [routerLink]="['cadastro', foto._id]" data-foto>
+                <foto url={{foto.url}} titulo={{foto.titulo}}></foto>
+            </a>
+
+            <button class="btn btn-danger" (click)="deletar(foto)">Remover</button>
+        </painel>
+    </div>
+</section>

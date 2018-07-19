@@ -1,0 +1,17 @@
+
+npm start
+http://localhost:3000/v1/fotos
+
+https://update.angular.io/
+https://blog.angular.io/
+
+typescript = js que escala
+transpilador = de/para
+
+{{}}, [] = angular expression
+
+semantic version = semver
+polyfills = dar suporte a browsers antigos
+web components = unidade mínima de sw, fragmento auto suficiente (html, css, js, dados)
+decorator = anotação no ts
+

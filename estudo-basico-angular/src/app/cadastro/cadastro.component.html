@@ -1,0 +1,46 @@
+<header class="jumbotron">
+	<h1 class="text-center">
+		Cadastrar fotos
+	</h1>
+</header>
+
+<section class="container">
+	<div class="row" *ngIf="mensagem.texto">
+		<div class="col-md-12">
+			<app-mensagem [tipo]="mensagem.tipo" [texto]="mensagem.texto"></app-mensagem>
+		</div>
+	</div>
+
+	<div class="row">
+		<form [formGroup]="formCadastro" class="col-md-7" (ngSubmit)="cadastrar(foto)">
+			<div class="form-group">
+				<label>Título</label>
+
+				<input type="text" name="titulo" formControlName="titulo" class="form-control" [(ngModel)]="foto.titulo" required>
+				<app-mensagem *ngIf="formCadastro.controls.titulo.errors?.required && formCadastro.controls.titulo.touched" texto="Titulo obrigatório" tipo="warning"></app-mensagem>
+				<app-mensagem *ngIf="formCadastro.controls.titulo.errors?.minlength" texto="Mínimo de 5 caracteres" tipo="warning"></app-mensagem>
+			</div>
+
+			<div class="form-group">
+				<label>URL</label>
+
+				<input type="url" name="url" formControlName="url" class="form-control" [(ngModel)]="foto.url" required>
+				<app-mensagem *ngIf="formCadastro.controls.url.invalid && formCadastro.controls.url.touched" texto="URL obrigatória" tipo="warning"></app-mensagem>
+			</div>
+
+			<div class="form-group">
+				<label>Descrição</label>
+				<textarea type="text" name="descricao" formControlName="descricao" class="form-control" [(ngModel)]="foto.descricao"></textarea>
+			</div>
+
+			<a routerLink="" class="btn btn-secondary">Voltar</a>
+			<button [disabled]="formCadastro.invalid" class="btn btn-primary">Cadastrar</button>
+		</form>
+
+		<aside class="col-md-5">
+			<painel titulo={{foto.titulo}} *ngIf="foto.url">
+				<foto data-foto url={{foto.url}}></foto>
+			</painel>
+		</aside>
+	</div>
+</section>
